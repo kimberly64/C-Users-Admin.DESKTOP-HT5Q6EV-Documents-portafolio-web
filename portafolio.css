@@ -1,9 +1,16 @@
-body{background-color: rgb(150, 88, 117);
+
+body {background-color: rgb(150, 88, 117);
     margin:10px 5%;
     text-align: justify;
     font-family: sans-serif;
-background-image: url(fondorosa.png);
-background-repeat: no-repeat;}
+    background-image: url('fondorosa.png'); /* Ruta a la imagen de fondo */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-size: cover; /* Asegura que la imagen cubra todo el área del fondo */
+    background-position: center; /* Centra la imagen en el fondo */
+    background-attachment: fixed; /* Fija la imagen en su lugar durante el desplazamiento (opcional) */
+    margin: 0; /* Elimina el margen por defecto del body */
+    padding: 0; /* Elimina el padding por defecto del body */
+}
     
     h1{ color: black;
         font-family: normal;
@@ -11,26 +18,32 @@ background-repeat: no-repeat;}
         text-align: center;
         letter-spacing:10px;}
     
-    .img1 {
-        width: 400px;
-position: relative;
-border:rosybrown;
-border-radius: 300px;}
-    
-    .contenedor {
-        text-align: center;
-
-    }
-    .titulo2{
-        margin-left: 500px;
-    }
-.parra1{
-    text-align: center;
-    align-content: center;
-    font-family:sans-serif;
-
-}
-
+        .img1 {
+            width: 400px;
+            position: relative;
+            border: 5px solid rosybrown;
+            border-radius: 50%;
+            margin: 0 auto; /* Centra la imagen horizontalmente */
+            display: block; /* Asegura que la imagen esté en el flujo del documento y permita que el texto fluya debajo */
+        }
+       
+        .titulo2 {
+            text-align: center; /* Centra el texto del título */
+            margin-top: 20px; /* Ajusta el margen superior del título según tus necesidades */
+            padding-bottom: 10px;
+        }
+        
+        .parra1 { 
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
+            text-align: center; /* Centra el texto del párrafo */
+            margin-top: 20px; /* Ajusta el margen superior del párrafo según tus necesidades */
+        }
+        
+        .contenedor {
+            text-align: center; /* Asegura que el contenido dentro del contenedor esté centrado */
+            margin: 0 auto; /* Centra el contenedor si tiene un ancho definido */
+        }
+       
 .titulo1{
     background-color: darkmagenta;
 margin: 0px;
@@ -42,11 +55,17 @@ flex-direction: column;
 ;
 }
 
-.parra1{
+
+.Información{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; 
-flex-direction: column;
-margin: 60px;
-padding: 200px;}
+    text-align: center; /* Centra el texto del párrafo */
+    margin-top: 20px; /* Ajusta el margen superior del párrafo según tus necesidades */
+}
+
+.titulo3{
+    text-align: center; /* Centra el texto del título */
+    margin-top: 20px;
+}
 h4, h2, small, a{
     margin: 0;
     padding: 0;
@@ -167,7 +186,55 @@ color: #ffffff;}
     right: 0px;
 }
 .titulogaleria{
-    background-color: rgb(94, 23, 72);
+    background-color: rgb(229, 166, 209);
     text-align: center;
     
+}
+
+
+/* Media Queries para pantallas más pequeñas */
+
+/* Tablets (ancho <= 768px) */
+@media screen and (max-width: 768px) {
+    p {
+        font-size: 1.1rem;
+    }
+
+    .carrusel-track div {
+        padding: 5px;
+    }
+
+    .carrusel-arrow svg {
+        width: 24px;
+        height: 24px;
+    }
+}
+
+/* Teléfonos móviles (ancho <= 480px) */
+@media screen and (max-width: 480px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2, h3 {
+        font-size: 1.4rem;
+    }
+
+    p {
+        font-size: 1rem;
+    }
+
+    .contenedor {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .carrusel-track div {
+        padding: 5px;
+    }
+
+    .carrusel-arrow svg {
+        width: 20px;
+        height: 20px;
+    }
 }

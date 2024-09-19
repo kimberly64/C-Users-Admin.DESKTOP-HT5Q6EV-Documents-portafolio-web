@@ -1,31 +1,47 @@
-function App(){}
-    window.onloap= function(event){
-        var app = new App()
-        window.app = app
-    }
+// Definición de la función App
+function App() {}
 
-    App.prototype.processingButton = function(event){
-        const btn = event.currentTarget;
-    const carrusellist = event.currentTarget.parentNode;
-    const track = event.currentTarget.parentNode.querySelector('#track');
-    const carrusel = track.querySelectorAll('carrusel');
+// Inicialización del objeto App cuando la ventana se carga
+window.onload = function(event) {
+    var app = new App();
+    window.app = app;
 
-    const carruselwidth = carrusel[0].offsetwidth;
-    const listWidth = carrusellist.offsetwidth;
+    // Asigna eventos a los botones
+    const buttons = document.querySelectorAll('.carrusel-arrow');
+    buttons.forEach(button => {
+        button.addEventListener('click', app.processingButton.bind(app));
+    });
+};
+
+// Método de la clase App para procesar los botones del carrusel
+App.prototype.processingButton = function(event) {
+    const btn = event.currentTarget;
+    const carruselList = btn.parentNode;
+    const track = carruselList.querySelector('#track');
+    const carruseles = track.querySelectorAll('.carrusel');
+
+    const carruselWidth = carruseles[0].offsetWidth;
+    const listWidth = carruselList.offsetWidth;
+
+    let leftPosition = track.style.transform === "" ? 0 : Math.abs(parseInt(track.style.transform.replace('translateX(', '').replace('px)', '')));
     
-    track.style.left == "" ? leftposition = track.style.left = 0
-    : leftposition = parseFloat(track.style.left.slice(0, -2) * -1);
-    btn.dataset.button == "button-prev" ? precaction(leftposition, carruselwidth, track) : nextAction(leftposition, trackwidth, listWidth, carruselwidth, track);
+    if (btn.dataset.button === "button-prev") {
+        prevAction(leftPosition, carruselWidth, track);
+    } else if (btn.dataset.button === "button-next") {
+        nextAction(leftPosition, track.scrollWidth, listWidth, carruselWidth, track);
+    }
 }
-let prevAction = (leftposition, carruselwidth, track) => {
-    if(leftposition > 0){
-        track.style.left = `${-1 * (leftposition - carruselwidth)}px`
-     }
+
+// Acción para el botón "prev" (anterior)
+function prevAction(leftPosition, carruselWidth, track) {
+    if (leftPosition > 0) {
+        track.style.transform = `translateX(${-1 * (leftPosition - carruselWidth)}px)`;
     }
-    
-    let nextAction=( leftposition, trackwidth, listWidth, carruselwidth, track) => {
-        if(leftposition <(trackwidth + listWidth)){
-            track.style.left =`${-1 *(leftposition- carruselwidth)}px`;
-        }
+}
+
+// Acción para el botón "next" (siguiente)
+function nextAction(leftPosition, trackWidth, listWidth, carruselWidth, track) {
+    if (leftPosition < (trackWidth - listWidth)) {
+        track.style.transform = `translateX(${-1 * (leftPosition + carruselWidth)}px)`;
     }
-    
+}
